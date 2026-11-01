@@ -40,11 +40,12 @@ Taquito currently supports the following versions of Node.js®:
 
 | Version      | Supported? |
 | ------------ | ---------- |
+| v26 LTS      | ✅         |
 | v24 LTS      | ✅         |
 | v22 LTS      | ✅         |
 | < v22        | ❌         |
 
-The repository currently targets Node.js `>=22`, and CI runs on Node.js 22 and 24.
+The repository currently targets Node.js `>=22`, and CI runs on Node.js 22, 24 and 26.
 
 On some GNU/Linux systems, native dependencies used by Ledger-related packages may require additional system libraries. If `npm ci` or `npm install` fails with errors such as `libusb.h: No such file or directory`, install the relevant packages first, for example on Debian or Ubuntu:
 
