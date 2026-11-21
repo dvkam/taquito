@@ -1,0 +1,39 @@
+name: Integration queue probe
+
+on:
+  push:
+    branches: [ci/test-integration-queue]
+
+permissions: {}
+
+jobs:
+  default-queue:
+    name: Default queue (${{ matrix.job }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [1, 2, 3, 4]
+    concurrency:
+      group: local-queue-probe-default-${{ github.run_id }}
+      cancel-in-progress: false
+    steps:
+      - name: Hold the concurrency slot
+        run: sleep 25
+
+  extended-queue:
+    name: Extended queue (${{ matrix.job }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [1, 2, 3, 4]
+    concurrency:
+      group: local-queue-probe-max-${{ github.run_id }}
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - name: Hold the concurrency slot
+        run: sleep 25
